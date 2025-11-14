@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test_cicd_springboot_nkp-deployment
+  name: test-cicd-springboot-nkp-deployment
   namespace: testapp
   labels:
-    app: test_cicd_springboot_nkp
+    app: test-cicd-springboot-nkp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test_cicd_springboot_nkp
+      app: test-cicd-springboot-nkp
   template:
     metadata:
       labels:
-        app: test_cicd_springboot_nkp
+        app: test-cicd-springboot-nkp
     spec:
       imagePullSecrets:
       - name: harbor-pull-secret
       containers:
-        - name: test_cicd_springboot_nkp
+        - name: test-cicd-springboot-nkp-locharb
           image: 172.20.0.89/univh2ctest-ci-cd/test_cicd_springboot_nkp:11
           ports:
             - containerPort: 7061          
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: httpd-html
+  name: test-cicd-springboot-nkp-html
   namespace: testapp
 data:
   index.html: |
@@ -40,12 +40,12 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test_cicd_springboot_nkp-service
+  name: test-cicd-springboot-nkp-service
   namespace: testapp
 spec:
   type: LoadBalancer
   selector:
-    app: test_cicd_springboot_nkp
+    app: test-cicd-springboot-nkp
   ports:
     - protocol: TCP
       port: 7061
