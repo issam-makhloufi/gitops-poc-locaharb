@@ -19,7 +19,7 @@ spec:
       - name: harbor-pull-secret
       containers:
         - name: test-cicd-springboot-nkp-locharb
-          image: 172.20.0.89/univh2ctest-ci-cd/test_cicd_springboot_nkp:11
+          image: 172.20.0.89/univh2ctest-ci-cd/test_cicd_springboot_nkp:13
           ports:
             - containerPort: 7061          
 ---
